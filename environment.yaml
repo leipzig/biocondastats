@@ -1,4 +1,4 @@
-name: qgrid-environment
+name: condastatsbinder
 channels:
   - conda-forge
   - defaults
