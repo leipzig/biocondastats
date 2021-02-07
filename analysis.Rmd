@@ -1,0 +1,59 @@
+
+```{r}
+dl<-read.table("2020.clean.txt",col.names=c("package","downloads"))
+
+getSummary<-function(recipe){
+  cat(recipe,"\n")
+  if(file.exists(paste0("../bioconda-recipes/recipes/",recipe,"/meta.yaml"))){
+    metayaml<-tryCatch({yaml.load_file(paste0("../bioconda-recipes/recipes/",recipe,"/meta.yaml"),eval.expr=FALSE)},
+                       error=function(cond){return(NULL)})
+    if(is.null(metayaml)){return("")}
+    if(exists('about', where=metayaml)){
+      #cat("about")
+      about<-metayaml$about
+      if(exists('summary', where=about)){
+        return(metayaml$about$summary)
+      }
+    }
+  }
+  return("")
+}
+
+```
+
+
+
+```{r}
+dl %>% rowwise() %>% dplyr::mutate(summary=getSummary(package)) -> annodl
+catannodl <- annodl %>% dplyr::mutate(bioconductor=str_detect(package,'bioconductor')) %>%
+  dplyr::mutate(perl=str_detect(package,'perl')) %>%
+  dplyr::mutate(rna=str_detect(summary,fixed('rna', ignore_case=TRUE))) %>%
+  dplyr::mutate(alignment=str_detect(summary,regex('(alignment|BAM)', ignore_case=TRUE))) %>%
+  dplyr::mutate(assembly=str_detect(summary,fixed('assemb', ignore_case=TRUE))) %>%
+  dplyr::mutate(affy=str_detect(summary,fixed('affy', ignore_case=TRUE))) %>%
+  dplyr::mutate(metagnomics=str_detect(summary,fixed('metageno', ignore_case=TRUE))) %>%
+  dplyr::mutate(proteomics=str_detect(summary,regex('(amino|prote)', ignore_case=TRUE))) %>%
+  dplyr::mutate(variation=str_detect(summary,regex('(VCF|variant|SNP|GATK)', ignore_case=TRUE))) %>%
+  dplyr::mutate(sequence=str_detect(summary,regex('(fasta|fastq|reads|sequencing|adapter)', ignore_case=TRUE))) %>%
+  dplyr::mutate(seqfeatures=str_detect(summary,regex('(motif|k-mer|repeat)', ignore_case=TRUE))) %>%
+  dplyr::mutate(genomefeatures=str_detect(summary,regex('(bed|feature)', ignore_case=TRUE))) %>%
+  dplyr::mutate(chipseq=str_detect(summary,regex('(ChIP-Seq)', ignore_case=TRUE))) %>%
+  dplyr::mutate(nanopore=str_detect(summary,regex('(Nanopore)', ignore_case=TRUE))) %>%
+  dplyr::mutate(cancer=str_detect(summary,regex('(onco|cancer|somatic)', ignore_case=TRUE))) %>%
+  dplyr::mutate(population=str_detect(summary,regex('(population|GWAS)', ignore_case=TRUE))) %>%
+  dplyr::mutate(vizualization=str_detect(summary,regex('(vizual|visual)', ignore_case=TRUE))) %>% 
+  dplyr::mutate(micro=str_detect(summary,regex('(micro|pathogen|strain|viral)', ignore_case=TRUE))) %>% 
+  dplyr::mutate(phylo=str_detect(summary,regex('(phylo)', ignore_case=TRUE))) %>%
+  dplyr::mutate(phylo=str_detect(summary,regex('(CNV)', ignore_case=TRUE))) 
+
+uncategorized <- catannodl %>% 
+  filter_at(vars(-package, -downloads, -summary), all_vars(isFALSE(.))) 
+
+i1 <- which(as.matrix(catannodl[,-c("package","downloads","summary")]), arr.ind = TRUE)
+tapply(names(db)[i1[,2]], i1[,1], paste, collapse=",")
+
+```
+
+```{r}
+catannodl %>% filter(bioconductor==FALSE && perl==FALSE) %>% arrange(-downloads) %>% select(package,downloads,summary) %>% head(100) %>% knitr::kable()
+```
