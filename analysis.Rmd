@@ -1,9 +1,22 @@
+---
+title: "Tool popularity analysis"
+output: html_document
+---
+
+# What is this?
+This is a analysis of bioconda tool download metrics in order to prioritize our efforts in tool descriptor creation on Truwl
+
+```{r}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(dplyr)
+library(stringr)
+```
 
 ```{r}
 dl<-read.table("2020.clean.txt",col.names=c("package","downloads"))
 
 getSummary<-function(recipe){
-  cat(recipe,"\n")
+  #cat(recipe,"\n")
   if(file.exists(paste0("../bioconda-recipes/recipes/",recipe,"/meta.yaml"))){
     metayaml<-tryCatch({yaml.load_file(paste0("../bioconda-recipes/recipes/",recipe,"/meta.yaml"),eval.expr=FALSE)},
                        error=function(cond){return(NULL)})
@@ -21,11 +34,11 @@ getSummary<-function(recipe){
 
 ```
 
-
+In 2020, there were `r nrow(dl)` tools in bioconda. `r dl %>% filter(str_detect(package,regex('(bioconductor|perl)'))) %>% summarize(cnt=n_distinct(package)) %>% pull ` of those were Bioconductor packages or Perl modules.
 
 ```{r}
 dl %>% rowwise() %>% dplyr::mutate(summary=getSummary(package)) -> annodl
-catannodl <- annodl %>% dplyr::mutate(bioconductor=str_detect(package,'bioconductor')) %>%
+catannodl <- annodl %>% rowwise() %>% dplyr::mutate(bioconductor=str_detect(package,'bioconductor')) %>%
   dplyr::mutate(perl=str_detect(package,'perl')) %>%
   dplyr::mutate(rna=str_detect(summary,fixed('rna', ignore_case=TRUE))) %>%
   dplyr::mutate(alignment=str_detect(summary,regex('(alignment|BAM)', ignore_case=TRUE))) %>%
@@ -44,16 +57,16 @@ catannodl <- annodl %>% dplyr::mutate(bioconductor=str_detect(package,'bioconduc
   dplyr::mutate(vizualization=str_detect(summary,regex('(vizual|visual)', ignore_case=TRUE))) %>% 
   dplyr::mutate(micro=str_detect(summary,regex('(micro|pathogen|strain|viral)', ignore_case=TRUE))) %>% 
   dplyr::mutate(phylo=str_detect(summary,regex('(phylo)', ignore_case=TRUE))) %>%
-  dplyr::mutate(phylo=str_detect(summary,regex('(CNV)', ignore_case=TRUE))) 
+  dplyr::mutate(cnv=str_detect(summary,regex('(CNV|SV)', ignore_case=TRUE))) 
 
 uncategorized <- catannodl %>% 
   filter_at(vars(-package, -downloads, -summary), all_vars(isFALSE(.))) 
-
-i1 <- which(as.matrix(catannodl[,-c("package","downloads","summary")]), arr.ind = TRUE)
-tapply(names(db)[i1[,2]], i1[,1], paste, collapse=",")
 
 ```
 
 ```{r}
 catannodl %>% filter(bioconductor==FALSE && perl==FALSE) %>% arrange(-downloads) %>% select(package,downloads,summary) %>% head(100) %>% knitr::kable()
 ```
+
+```{r}
+catannodl %>% arrange(-downloads) %>% select(-package,-downloads,-summary) %>% colSums()
