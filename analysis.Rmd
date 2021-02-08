@@ -70,3 +70,4 @@ catannodl %>% filter(bioconductor==FALSE && perl==FALSE) %>% arrange(-downloads)
 
 ```{r}
 catannodl %>% arrange(-downloads) %>% select(-package,-downloads,-summary) %>% colSums()
+```
