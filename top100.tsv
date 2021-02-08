@@ -1,0 +1,118 @@
+package	downloads	summary
+1	samtools	914497	Tools for dealing with SAM, BAM and CRAM files
+2	htslib	826429	C library for high-throughput sequencing data formats.
+3	pysam	671100	Pysam is a python module for reading and manipulating Samfiles. It is a lightweight wrapper of the samtools C-API. Pysam also includes an interface for tabix.
+4	bcftools	579321	BCFtools is a set of utilities that manipulate variant calls in the Variant Call Format (VCF) and its binary counterpart BCF. All commands work transparently with both VCFs and BCFs, both uncompressed and BGZF-compressed.  Most commands accept VCF, bgzipped VCF and BCF with filetype detected automatically even when streaming from a pipe. Indexed VCF and BCF will work in all situations. Un-indexed VCF and BCF and streams will work in most, but not all situations.
+5	bedtools	350476	A powerful toolset for genome arithmetic
+6	fastqc	182495	A quality control tool for high throughput sequence data.
+7	bwa	176049	The BWA read mapper.
+8	picard	169015	Java tools for working with NGS data in the BAM format
+9	bowtie2	164854	Fast and sensitive gapped read alignment
+10	blast	161337	BLAST+ is a new suite of BLAST tools that utilizes the NCBI C++ Toolkit.
+11	gatk4	144114	Genome Analysis Toolkit (GATK4)
+12	pubchempy	136193	A simple Python wrapper around the PubChem PUG REST API.
+13	cutadapt	135029	Trim adapters from high-throughput sequencing reads
+14	snakemake	124024	A popular workflow management system aiming at full in-silico reproducibility.
+15	multiqc	122213	Create aggregate bioinformatics analysis reports across many samples and tools
+16	entrez-direct	114946	Entrez Direct (EDirect) is an advanced method for accessing the NCBI's set of interconnected databases (publication, sequence, structure, gene, variation, expression, etc.) from a UNIX terminal window. Functions take search terms from command-line arguments. Individual operations are combined to build multi-step queries. Record retrieval and formatting normally complete the process.
+17	hmmer	102146	Biosequence analysis using profile hidden Markov models
+18	dnaio	97344	Read FASTA and FASTQ files efficiently
+19	sambamba	95108	Tools for working with SAM/BAM data
+20	bowtie	85336	An ultrafast memory-efficient short read aligner
+21	star	85301	An RNA-seq read aligner.
+22	fastp	84482	A FASTQ preprocessor with full features (QC/adapters/trimming/filtering/splitting...)
+23	mafft	82318	Multiple alignment program for amino acid or nucleotide sequences based on fast Fourier transform
+24	pybigwig	82136	A python extension written in C for quick access to bigWig files.
+25	bx-python	81143	
+26	cyvcf2	79352	A cython wrapper around htslib built for fast parsing of Variant Call Format (VCF) files
+27	pybedtools	77404	Wraps BEDTools for use in Python and adds many additional features.
+28	minimap2	75502	A versatile pairwise aligner for genomic and spliced nucleotide sequences.
+29	vsearch	73960	a versatile open source tool for metagenomics (USEARCH alternative)
+30	c-ares	73059	c-ares is a C library for asynchronous DNS requests (including name resolves)
+31	diamond	71046	Accelerated BLAST compatible local sequence aligner
+32	pyfaidx	70489	pyfaidx: efficient pythonic random access to fasta subsequences
+33	iqtree	69577	Efficient phylogenomic software by maximum likelihood.
+34	nextflow	69279	A DSL for data-driven computational pipelines http://nextflow.io
+35	bbmap	69255	BBMap is a short read aligner, as well as various other bioinformatic tools.
+36	bamtools	67523	C++ API & command-line toolkit for working with BAM data
+37	salmon	67026	Highly-accurate & wicked fast transcript-level quantification from RNA-seq reads using selective alignment
+38	dendropy	61774	A Python library for phylogenetics and phylogenetic computing: reading, writing, simulation, processing and manipulation of phylogenetic trees (phylogenies) and characters.
+39	qualimap	60767	Quality control of alignment sequencing data and its derivatives like feature counts
+40	deeptools	60469	A set of user-friendly tools for normalization and visualzation of deep-sequencing data
+41	tidyp	60384	Program for cleaning up and validating HTML
+42	raxml	59983	Phylogenetics - Randomized Axelerated Maximum Likelihood.
+43	seqkit	59056	
+44	clustalw	58010	ClustalW2 is a general purpose multiple sequence alignment program for DNA or proteins.
+45	fasttree	57810	FastTree infers approximately-maximum-likelihood phylogenetic trees from alignments of nucleotide or protein sequences
+46	ensembl-vep	56845	Ensembl Variant Effect Predictor
+47	paml	56274	A package of programs for phylogenetic analyses of DNA or protein sequences using maximum likelihood.
+48	t_coffee	55350	A collection of tools for Computing, Evaluating and Manipulating Multiple Alignments of DNA, RNA, Protein Sequences and Structures.
+49	sra-tools	54831	SRA Toolkit and SDK from NCBI
+50	subread	49353	High-performance read alignment, quantification, and mutation discovery
+51	hisat2	49135	Graph-based alignment of next generation sequencing reads to a population of genomes.
+52	bcbio-nextgen	48513	Validated, scalable, community developed variant calling, RNA-seq and small RNA analysis
+53	sortmerna	47875	SortMeRNA is a biological sequence analysis tool for filtering, mapping and OTU-picking NGS reads.
+54	vcftools	47846	A set of tools written in Perl and C++ for working with VCF files. This package only contains the C++ libraries whereas the package perl-vcftools-vcf contains the perl libraries
+55	ucsc-bedgraphtobigwig	47614	Convert a bedGraph file to bigWig format.
+56	adapterremoval	46366	The AdapterRemoval v2 tool for merging and clipping reads.
+57	viennarna	46334	Vienna RNA package -- RNA secondary structure prediction and comparison
+58	trimmomatic	45824	A flexible read trimming tool for Illumina NGS data
+59	spades	45181	SPAdes (St. Petersburg genome assembler) is intended for both standard isolates and single-cell MDA bacteria assemblies.
+60	seqtk	44265	Seqtk is a fast and lightweight tool for processing sequences in the FASTA or FASTQ format
+61	sickle-trim	43725	Windowed Adaptive Trimming for fastq files using quality
+62	prodigal	41832	Prodigal (Prokaryotic Dynamic Programming Genefinding Algorithm) is a microbial (bacterial and archaeal) gene finding program
+63	bedops	41101	High-performance genomic feature operations.
+64	ncls	41016	Fast overlap datastructure.
+65	sepp	40259	SATe-enabled phylogenetic placement
+66	freebayes	39344	Bayesian haplotype-based polymorphism discovery and genotyping
+67	sina	39211	Reference based multiple sequence alignment
+68	avro-python3	39174	Avro is a serialization and RPC framework.
+69	muscle	38714	MUSCLE: multiple sequence alignment with high accuracy and high throughput
+70	fastx_toolkit	37524	The FASTX-Toolkit is a collection of command line tools for
+Short-Reads FASTA/FASTQ files preprocessing.
+
+Next-Generation sequencing machines usually produce FASTA or FASTQ files,
+containing multiple short-reads sequences (possibly with quality
+information).
+
+The main processing of such FASTA/FASTQ files is mapping (aka aligning) the
+sequences to reference genomes or other databases using specialized
+programs. Example of such mapping programs are: Blat, SHRiMP, LastZ, MAQ
+and many many others
+
+However, it is sometimes more productive to preprocess the FASTA/FASTQ files
+before mapping the sequences to the genome - manipulating the sequences to
+produce better mapping results.
+
+The FASTX-Toolkit tools perform some of these preprocessing tasks.'
+
+71	snpeff	37244	Genetic variant annotation and effect prediction toolbox
+72	galaxy-lib	37161	Subset of Galaxy (http://galaxyproject.org/) core code base designed to be used a library.
+73	gatk	36914	The full Genome Analysis Toolkit (GATK) framework, v3
+74	trim-galore	36908	Trim Galore! is a wrapper script to automate quality and adapter trimming as well as quality control
+75	ucsc-fatotwobit	36248	Convert DNA from fasta to 2bit format
+76	pyranges	35341	GenomicRanges for Python.
+77	vardict	34970	A sensitive variant caller for both single and paired sample variant calling
+78	stringtie	34194	StringTie is a fast and highly efficient assembler of RNA-Seq alignments into potential transcripts.
+79	sorted_nearest	33990	
+80	deblur	33559	Deblur is a greedy deconvolution algorithm based on known read error profiles.
+81	racon	32793	Ultrafast consensus module for raw de novo genome assembly of long uncorrected reads.
+82	infernal	32728	Infernal ("INFERence of RNA ALignment") is for searching DNA sequence databases for RNA structure and sequence similarities.
+83	sourmash	32647	Compute and compare MinHash signatures for DNA data sets.
+84	abundancebin	32587	Abundance-based tool for binning metagenomic sequences
+85	ncbi-ngs-sdk	32470	NGS is a new, domain-specific API for accessing reads, alignments and pileups produced from Next Generation Sequencing.
+86	unifrac	32415	Fast phylogenetic diversity calculations
+87	seqan	32159	SeqAn is an open source C++ library of efficient algorithms and data structures for the analysis of sequences with the focus on biological data.
+88	py2bit	31718	A package for accessing 2bit files using lib2bit
+89	pyrle	31641	Genomic Rle-objects for Python
+90	biobambam	31023	Tools for early stage alignment file processing
+91	varscan	30559	variant detection in massively parallel sequencing data
+92	htseq	30333	HTSeq is a Python library to facilitate processing and analysis of data from high-throughput sequencing (HTS) experiments.
+93	vardict-java	30258	Java port of the VarDict variant discovery program
+94	cnvkit	30174	Copy number variant detection from high-throughput sequencing
+95	gneiss	30161	Compositional data analysis tools and visualizations
+96	k8	30030	Lightweight JavaScript shell based on Google's V8 JavaScript engine
+97	kallisto	29298	Quantifying abundances of transcripts from RNA-Seq data, or more generally of target sequences using high-throughput sequencing reads.
+98	gffutils	28670	Work with GFF and GTF files in a flexible database framework
+99	medaka	28492	Neural network sequence error correction.
+100	fwdpy11	28309	Forward-time population genetic simulation in Python.
