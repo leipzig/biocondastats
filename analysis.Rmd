@@ -32,12 +32,28 @@ getSummary<-function(recipe){
   return("")
 }
 
+getBiotools<-function(tool){
+  cat(tool,"\n")
+  tool<-str_replace(string=tool,pattern = '^bioconductor-',replacement = '')
+  tool<-str_replace(string=tool,pattern = '^perl-',replacement = '')
+  terms<-tryCatch({
+  jsonlite::fromJSON(paste0("https://bio.tools/api/tool/",tool))$topic$term},error=function(cond){return(NULL)})
+  if(is.null(terms)){return("None")}
+  else{
+    return(paste(terms,sep=", ",collapse=","))
+    #return(data.frame(package=tool,term=terms))
+  }
+}
 ```
 
 In 2020, there were `r nrow(dl)` tools in bioconda. `r dl %>% filter(str_detect(package,regex('(bioconductor|perl)'))) %>% summarize(cnt=n_distinct(package)) %>% pull ` of those were Bioconductor packages or Perl modules.
 
 ```{r}
-dl %>% rowwise() %>% dplyr::mutate(summary=getSummary(package)) -> annodl
+dl %>% rowwise() %>% dplyr::mutate(biotools=getBiotools(package)) -> btdl #slow
+btdl %>% dplyr::mutate(summary=getSummary(package)) -> annodl
+```
+
+```{r}
 catannodl <- annodl %>% rowwise() %>% dplyr::mutate(bioconductor=str_detect(package,'bioconductor')) %>%
   dplyr::mutate(perl=str_detect(package,'perl')) %>%
   dplyr::mutate(rna=str_detect(summary,fixed('rna', ignore_case=TRUE))) %>%
@@ -66,6 +82,8 @@ uncategorized <- catannodl %>%
 
 ```{r}
 catannodl %>% filter(bioconductor==FALSE && perl==FALSE) %>% arrange(-downloads) %>% select(package,downloads,summary) %>% head(100) %>% knitr::kable()
+catannodl %>% filter(bioconductor==FALSE && perl==FALSE) %>% arrange(-downloads) %>% select(package,downloads,summary) %>% head(100) -> top100
+write.table(top100,file="top100.tsv",sep="\t")
 ```
 
 ```{r}
